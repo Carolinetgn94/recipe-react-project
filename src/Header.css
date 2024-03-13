@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+  }
+
+  .searchbar {
+    margin: 30px;
+  }
+
+  .menu-items {
+    display: flex;
+    gap: 20px;
+    font-size: x-small;
+    margin: 20px;
+   
+  }
