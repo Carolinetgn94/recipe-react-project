@@ -6,19 +6,23 @@ import Details from "./Details";
 import Header from "./Header";
 import { useState, createContext } from "react";
 
+
 export const dataContext = createContext('');
 console.log("dataContext", dataContext)
+const recipeApiKey = process.env.REACT_APP_RECIPE_APIKEY
+console.log(recipeApiKey)
 
 function App() {
 const [searchInput, setSearchInput] = useState("");
-const [recipeList, setRecipeList] = useState([])
+const [recipeList, setRecipeList] = useState([]);
+const [recipeDetailsData, setRecipeDetailsData] = useState("");
+const [favouriteList, setFavouriteList] = useState([])
 
 async function handleSubmit(e){
   e.preventDefault();
   try {
     const res = await fetch
-    (`https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchInput}&key=1ac39aa1-35ce-45f2-a54e-ea0270e69df6
-    `);
+    (`https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchInput}`);
     
     const data = await res.json();
     if(data.data.recipes) {
@@ -30,13 +34,32 @@ async function handleSubmit(e){
     console.log(e);
   }
 }
-console.log(recipeList)
+
+function handleAddToFavourite(currentRecipe) {
+  console.log(currentRecipe);
+  let addedFavouriteList = [...favouriteList];
+  const index = addedFavouriteList.findIndex(recipe => recipe.id === currentRecipe.id)
+
+  if(index === -1) {
+    addedFavouriteList.push(currentRecipe)
+  } else {
+    addedFavouriteList.splice(index)
+  }
+  setFavouriteList(addedFavouriteList)
+}
+
+console.log('recipeList', recipeList)
+console.log('favlist', favouriteList);
 
   return (
     <div className="App">
-      <dataContext.Provider value={{searchInput, setSearchInput, handleSubmit}}>
+      <dataContext.Provider value={
+        {searchInput, setSearchInput, 
+        handleSubmit, handleAddToFavourite,
+        recipeList, setRecipeList, 
+        recipeDetailsData, setRecipeDetailsData, 
+        favouriteList, setFavouriteList}}>
         <Header />
-      </dataContext.Provider>
       
          <main>
         <Route exact path="/">
@@ -51,8 +74,8 @@ console.log(recipeList)
           <Details />
         </Route> 
       </main>
-   
-
+  
+ </dataContext.Provider>
      
     </div>
   );

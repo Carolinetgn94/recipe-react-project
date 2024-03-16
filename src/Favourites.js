@@ -1,12 +1,18 @@
-
+import { useContext } from "react";
+import RecipeItem from "./RecipeItem";
+import { dataContext } from "./App";
 
 function Favourites() {
-    
-    return (
-        <div>
-            Favourites
-        </div>
-    )
+  
+    const { favouriteList } = useContext(dataContext);
+
+  return (
+    <div className="home-page">
+      {favouriteList && favouriteList.length > 0
+        ? favouriteList.map((item) => <RecipeItem item={item} />)
+        : `Nothing is added to your favourite`}
+    </div>
+  );
 }
 
-export default Favourites
+export default Favourites;
