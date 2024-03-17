@@ -4,13 +4,13 @@ import Home from "./Home";
 import Favourites from "./Favourites";
 import Details from "./Details";
 import Header from "./Header";
-import { useState, createContext } from "react";
+import { React, useState, createContext } from "react";
 
 
 export const dataContext = createContext('');
 console.log("dataContext", dataContext)
-const recipeApiKey = process.env.REACT_APP_RECIPE_APIKEY
-console.log(recipeApiKey)
+const recipeApiKey = process.env.REACT_APP_APIKEY;
+console.log('recipeAPIKEY',recipeApiKey)
 
 function App() {
 const [searchInput, setSearchInput] = useState("");

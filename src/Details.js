@@ -5,7 +5,7 @@ import './Details.css';
 
 function Details() {
   const { id } = useParams();
-  const { recipeDetailsData, setRecipeDetailsData, handleAddToFavourite } = useContext(dataContext);
+  const { recipeDetailsData, setRecipeDetailsData, handleAddToFavourite, favouriteList } = useContext(dataContext);
 
   useEffect(() => {
     async function getRecipeDetails() {
@@ -36,7 +36,13 @@ function Details() {
       </span>
       <h3 className="recipe-details-title">{recipeDetailsData.title}</h3>
       <div>
-        <button onClick={() => handleAddToFavourite(recipeDetailsData)}className="favouriteButton">Save to Favourites</button>
+        <button onClick={() => handleAddToFavourite(recipeDetailsData)}className="favouriteButton">
+          {favouriteList && favouriteList.length > 0 && favouriteList.findIndex(
+            (recipe) => recipe.id === recipeDetailsData.id) !== -1 
+          ? `Remove from Favourites`
+          : `Add To Favourites`
+          }
+        </button>
       </div>
       <br />
       <div className="recipe-details-ingredients">
