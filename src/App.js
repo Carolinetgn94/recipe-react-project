@@ -22,7 +22,7 @@ async function handleSubmit(e){
   e.preventDefault();
   try {
     const res = await fetch
-    (`https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchInput}`);
+    (`https://forkify-api.herokuapp.com/api/v2/recipes?search=${searchInput}&key=${recipeApiKey}`);
     
     const data = await res.json();
     if(data.data.recipes) {
