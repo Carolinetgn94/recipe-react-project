@@ -12,7 +12,8 @@ export const dataContext = createContext('');
 console.log("dataContext", dataContext);
 const recipeApiKey = process.env.REACT_APP_APIKEY;
 const bearerToken = process.env.REACT_APP_BEARERTOKEN;
-console.log(bearerToken);
+console.log("bearerToken", bearerToken);
+console.log("token", process.env.REACT_APP_BEARERTOKEN)
 const createRecordsUrl = 'https://api.airtable.com/v0/app2O5aomZfslC3yO/Table%201';
 
 
