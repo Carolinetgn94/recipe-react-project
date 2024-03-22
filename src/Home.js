@@ -4,7 +4,8 @@ import RecipeItem from "./RecipeItem"
 import './Home.css'
 
 function Home() {
-    const {recipeList} = useContext(dataContext)
+    const {recipeList} = useContext(dataContext);
+
     
     return (
         <div className="home-page">
