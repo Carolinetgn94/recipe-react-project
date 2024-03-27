@@ -1,17 +1,26 @@
 .header {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-  }
+  display: flex;
+  justify-content: center;
+  gap: 150px;
+  margin-top: 30px;
+  background-color: white;
 
-  .searchbar {
-    margin: 30px;
-  }
+}
 
-  .menu-items {
-    display: flex;
-    gap: 20px;
-    font-size: x-small;
-    margin: 20px;
-   
-  }
+.menu-items {
+  display: flex;
+  gap: 20px;
+  font-size: x-small;
+  margin: 20px;
+ 
+}
+
+.menu-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s; 
+}
+
+.menu-link:hover {
+  color: rgb(229, 88, 112); 
+}

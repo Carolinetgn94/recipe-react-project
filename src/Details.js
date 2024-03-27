@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { dataContext } from "./App";
 import './Details.css';
 import axios from 'axios';
+import { Button } from "antd";
 
 
 function Details() {
@@ -119,9 +120,9 @@ const toggleFavourite = async () => {
       </span>
       <h3 className="recipe-details-title">{recipeDetailsData.title}</h3>
       <div>
-      <button onClick={toggleFavourite} className="favouriteButton">
+      <Button variant="outlined" onClick={toggleFavourite} className="favouriteButton">
             {isFavourite ? "Remove From Favourites" : "Add To Favourites"}
-        </button>
+        </Button>
       </div>
       <br />
       <div className="recipe-details-ingredients">
