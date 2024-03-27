@@ -15,3 +15,12 @@
  
 }
 
+.menu-link {
+  text-decoration: none;
+  color: inherit;
+  transition: color 0.3s; 
+}
+
+.menu-link:hover {
+  color: rgb(229, 88, 112); 
+}

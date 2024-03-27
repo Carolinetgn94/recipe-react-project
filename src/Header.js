@@ -44,10 +44,10 @@ function Header() {
             </form>
             <div className="menu-items">
                 <h2>
-                    <Link to={'/'} onClick={clearRecipeList} >Home</Link>                
+                    <Link to={'/'} onClick={clearRecipeList} className="menu-link" >Home</Link>                
                 </h2>
                 <h2>
-                     <Link to={'/favourites'}>Favourites</Link>
+                     <Link to={'/favourites'} className="menu-link" >Favourites</Link>
                 </h2>
             </div>
         </div>
