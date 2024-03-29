@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import { Link , useHistory} from "react-router-dom"
 import './Header.css'
 import { useContext } from "react"
 import { dataContext } from "./App"
@@ -10,11 +10,17 @@ import logo from './recipe logo.png'
 function Header() {
     const {searchInput, setSearchInput, handleSubmit, setRecipeList} = useContext(dataContext);
     console.log(searchInput)
+    const history = useHistory();
 
     // Clear recipelist when home clicked
     const clearRecipeList = () => {
         setRecipeList([]);
     };
+
+    const handleSearchSubmit = (e) => {
+        e.preventDefault();
+        handleSubmit();
+    }
 
     return (
         <div className="header">
@@ -23,7 +29,7 @@ function Header() {
             <img src={logo} alt="Recipe Logo" style={{ width: '100px', height: 'auto' }}/>
           </Link>
             </div>
-            <form onSubmit={handleSubmit} className="searchbarbutton">
+            <form onSubmit={handleSearchSubmit} className="searchbarbutton">
       <Box
       component="form"
       sx={{

@@ -1,4 +1,4 @@
-import {Route} from "react-router-dom"
+import {Route, useHistory} from "react-router-dom"
 import './App.css';
 import Home from "./Home";
 import Favourites from "./Favourites";
@@ -20,7 +20,7 @@ const [searchInput, setSearchInput] = useState("");
 const [recipeList, setRecipeList] = useState([]);
 const [recipeDetailsData, setRecipeDetailsData] = useState("");
 const [favouriteList, setFavouriteList] = useState([]);
-
+const history = useHistory();
 
 async function handleSubmit(e){
   e.preventDefault();
@@ -30,8 +30,9 @@ async function handleSubmit(e){
     
     const data = await res.json();
     if(data.data.recipes) {
-      setRecipeList(data.data.recipes)
-      setSearchInput("")
+      setRecipeList(data.data.recipes);
+      setSearchInput("");
+      history.push("./")
     }
     console.log(data)
   } catch(e) {

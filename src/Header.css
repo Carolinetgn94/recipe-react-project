@@ -24,3 +24,11 @@
 .menu-link:hover {
   color: rgb(229, 88, 112); 
 }
+
+@media screen and (max-width: 850px) {
+  .header {
+    display: flex;
+    justify-content: center;
+    gap: 50px; 
+  }
+}

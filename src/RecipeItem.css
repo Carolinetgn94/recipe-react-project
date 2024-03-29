@@ -1,10 +1,5 @@
 .recipe-item-container {
-    display: block;
-    grid-gap: 5px;
-  }
-  
-  .recipe-item-box {
-    border: 10px solid transparent;
-    padding: 15px;
-  }
+  display: flex;
+  justify-content: center;
+}
 

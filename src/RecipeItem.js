@@ -13,8 +13,7 @@ function RecipeItem(props) {
         style={{
           width: "300px",
           height: "330px",
-          margin: "10px",
-          justifyContent: "center",
+          margin: "10px"
         }}
         cover={
           <img
