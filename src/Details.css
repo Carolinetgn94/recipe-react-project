@@ -1,7 +1,9 @@
 .recipe-details-info {
     border: 10px solid transparent;
-    padding: 60px;
-    margin-bottom: -50px;
+    padding-top: 20px;
+    padding-left: 200px;
+    padding-right: 200px;
+   
 }
 
 .recipe-details-info img {
@@ -10,9 +12,18 @@
     object-fit: contain;
 }
 
+.recipe-details-publisher {
+    font-style: italic;
+}
+
+.recipe-details-title{
+    font-size: 30px;
+}
+
 .recipe-details-ingredients {
     text-align: left;
     font-weight: 500;
     padding: 20px;
     color: rgb(23, 22, 19);
+    font-size: larger;
 }

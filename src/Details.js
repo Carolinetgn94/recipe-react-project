@@ -112,6 +112,7 @@ const toggleFavourite = async () => {
         <img
           src={recipeDetailsData.image_url}
           className="recipe-details-image"
+          style={{ borderRadius: "50px" }}
         />
       </div>
 
