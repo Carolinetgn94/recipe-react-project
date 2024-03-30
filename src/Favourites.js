@@ -1,12 +1,11 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect} from "react";
 import RecipeItem from "./RecipeItem";
 import { dataContext } from "./App";
 import axios from "axios";
 
 function Favourites() {
 
-  const { createRecordsUrl, bearerToken } = useContext(dataContext);
-  const [favouriteList, setFavouriteList] = useState([]);
+  const { createRecordsUrl, bearerToken, favouriteList, setFavouriteList } = useContext(dataContext);
 
   useEffect(() => {
     async function fetchFavouriteRecipes() {
@@ -21,9 +20,11 @@ function Favourites() {
           const favourites = data.records.map((record) => ({
             id: record.fields.id,
             title: record.fields.title,
-            image_url: record.fields.image_url
+            image_url: record.fields.image_url,
+            isFavourite: true,
           }));
           setFavouriteList(favourites);
+          console.log('fetched fav: isFavourite', favourites);
         } else {
           console.error("Failed to fetch favorite recipes:", response.statusText);
         }
@@ -33,13 +34,13 @@ function Favourites() {
     }
 
     fetchFavouriteRecipes();
-  }, [createRecordsUrl, bearerToken]);
+  }, [createRecordsUrl, bearerToken, setFavouriteList]);
 
 
   return (
     <div className="home-page">
       {favouriteList.length > 0
-        ? favouriteList.map((item) => <RecipeItem item={item} />)
+        ? favouriteList.map((item) => <RecipeItem item={item} key={item.id}/>)
         : `Nothing is added to your favourite`}
     </div>
   );

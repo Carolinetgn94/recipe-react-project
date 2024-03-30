@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { dataContext } from "./App";
 import './Details.css';
@@ -11,10 +11,10 @@ function Details() {
   const { 
     recipeDetailsData, setRecipeDetailsData, 
     favouriteList, setFavouriteList,
+    isFavourite, setIsFavourite,
     createRecordsUrl, bearerToken
     } = useContext(dataContext);
 
-    const [isFavourite, setIsFavourite] = useState(false);
 
 const getRecordId = async (recipeId) => {
     try {
@@ -56,12 +56,13 @@ useEffect(() => {
       }
     }
     getRecipeDetails();
-  }, []);
+  }, [id, favouriteList, setIsFavourite, setRecipeDetailsData]);
   console.log("recipeDetailsData", recipeDetailsData);
 
 
 const toggleFavourite = async () => {
     try {
+      
       if (isFavourite) {
         // Remove from favorites
         const recordId = await getRecordId(recipeDetailsData.id);
@@ -72,11 +73,12 @@ const toggleFavourite = async () => {
               "Content-Type": "application/json",
             },
           });
-          const updatedFavouriteList = favouriteList.filter((recipe) => recipe.id !== id);
+          const updatedFavouriteList = favouriteList.filter((recipe) => recipe.id !== recipeDetailsData.id);
           setIsFavourite(false);
           setFavouriteList(updatedFavouriteList);
+          console.log("UpdatedFavouriteList", updatedFavouriteList)
         }
-      } else {
+      }  else {
         // Add to favorites
         await axios.post(
           createRecordsUrl,
@@ -98,9 +100,9 @@ const toggleFavourite = async () => {
             },
           }
         );
-        setIsFavourite(true);
+        setIsFavourite(!isFavourite);
         setFavouriteList([...favouriteList, recipeDetailsData]);
-      }
+    }
     } catch (error) {
       console.error("Error updating favorite:", error);
     }
@@ -111,6 +113,7 @@ const toggleFavourite = async () => {
       <div className="recipe-details-info">
         <img
           src={recipeDetailsData.image_url}
+          alt="food-pic"
           className="recipe-details-image"
           style={{ borderRadius: "50px" }}
         />
@@ -122,7 +125,7 @@ const toggleFavourite = async () => {
       <h3 className="recipe-details-title">{recipeDetailsData.title}</h3>
       <div>
       <Button variant="outlined" onClick={toggleFavourite} className="favouriteButton">
-            {isFavourite ? "Remove From Favourites" : "Add To Favourites"}
+      {isFavourite ? "Remove From Favourites" : "Add To Favourites"}
         </Button>
       </div>
       <br />

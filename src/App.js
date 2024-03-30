@@ -20,6 +20,7 @@ const [searchInput, setSearchInput] = useState("");
 const [recipeList, setRecipeList] = useState([]);
 const [recipeDetailsData, setRecipeDetailsData] = useState("");
 const [favouriteList, setFavouriteList] = useState([]);
+const [isFavourite, setIsFavourite] = useState(false);
 const history = useHistory();
 
 async function handleSubmit(e){
@@ -48,6 +49,7 @@ async function handleSubmit(e){
         recipeList, setRecipeList, 
         recipeDetailsData, setRecipeDetailsData, 
         favouriteList, setFavouriteList,
+        isFavourite, setIsFavourite,
         createRecordsUrl, bearerToken}}>
         <Header />
       

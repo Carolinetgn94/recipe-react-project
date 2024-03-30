@@ -11,7 +11,7 @@ function Home() {
     
     return (
         <div className="home-page">
-            {recipeList && recipeList.length > 0  
+            { recipeList.length > 0  
             ? recipeList.map(item => <RecipeItem item={item} />)
             : <Highlights />}
         </div>
