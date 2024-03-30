@@ -33,7 +33,7 @@ async function handleSubmit(e){
     if(data.data.recipes) {
       setRecipeList(data.data.recipes);
       setSearchInput("");
-      history.push("./")
+      history.push("/")
     }
     console.log(data)
   } catch(e) {
